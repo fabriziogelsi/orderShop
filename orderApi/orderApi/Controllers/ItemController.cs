@@ -60,5 +60,13 @@ namespace orderApi.Controllers
 
             return NoContent();
         }
+
+        [HttpPost("initialize")]
+        public async Task<IActionResult> InitializeDb()
+        {
+
+            return Ok(await itemService.InitializeDb());
+        }
+
     }
 }
