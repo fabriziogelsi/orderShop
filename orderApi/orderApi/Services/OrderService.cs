@@ -43,6 +43,22 @@ namespace orderApi.Services
             return order;
         }
 
+        public async Task<List<Order>> GetOrdersReady()
+        {
+            List<Order> ordersConfirmed = await orderCollection.GetOrdersByStatus(Domain.Enums.Status.CONFIRMED);
+            
+            foreach(Order order in ordersConfirmed)
+            {
+                if (order.DeliveryTime < Time.GetCurrentTimeInUnixTimestamp())
+                {
+                    order.Status = Domain.Enums.Status.READY;
+                    await orderCollection.UpdateOrder(order);
+                }
+            }
+
+            return ordersConfirmed.Where(o => o.Status == Domain.Enums.Status.READY).ToList();
+        }
+
         private decimal calculateOrderPrice(List<Item> itemsRequested)
         {
             decimal orderPrice = 0;

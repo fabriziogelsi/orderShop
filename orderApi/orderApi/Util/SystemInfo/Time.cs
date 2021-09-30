@@ -11,9 +11,8 @@ namespace orderApi.Util.SystemInfo
 
         public static long GetCurrentTimeInUnixTimestampPlusTimeToWait()
         {
-            Random random = new Random();
-            double delay = random.NextDouble() * (10 - 1) + 1;
-            return DateTimeOffset.UtcNow.AddMinutes(delay).ToUnixTimeSeconds();
+            int randomDelay = new Random().Next(1, 10);
+            return DateTimeOffset.UtcNow.AddMinutes(randomDelay).ToUnixTimeSeconds();
         }
     }
 }
