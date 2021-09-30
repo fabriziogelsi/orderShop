@@ -48,6 +48,7 @@ namespace orderApi
         private static void ConfigureRepositories(IServiceCollection services)
         {
             services.AddScoped<ItemCollection>();
+            services.AddScoped<OrderCollection>();
         }
 
         private static void ConfigureInternalServices(IServiceCollection services)
@@ -55,6 +56,7 @@ namespace orderApi
             ConfigureRepositories(services);
 
             services.AddTransient<ItemService>();
+            services.AddTransient<OrderService>();
         }
     }
 }
