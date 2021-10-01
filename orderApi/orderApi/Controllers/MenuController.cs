@@ -33,7 +33,7 @@ namespace orderApi.Controllers
         }
 
         //user should get an notification after fixed amount of time that your order is ready
-        //This EP should be called by an cronjob every 1 minut for example
+        //This EP should be called by an cronjob every 1 minut for example.
         [HttpPut("readyorder")]
         public async Task<IActionResult> GetOrdersReady()
         {
